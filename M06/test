@@ -1,0 +1,17 @@
+import multiprocessing              #module to create multiple independent processes
+from datetime import datetime   #import modules for use in function
+from time import sleep
+
+
+def trigger(seconds):               #function take one arg a random number assigned later
+    sleep(seconds)                  #waiting method used with assigned wait time
+    print('wait', seconds, 'seconds, time is', datetime.utcnow())  #print of wait time used and current time
+
+if __name__ =='main':             #main program setup
+    import random                    #number generator
+    for x in range(3):               # for loop cycles 3 range
+        seconds = random.random()    #assign random to be used as args in earlier function
+        p = multiprocessing.Process(target=trigger, args=(seconds,)) #Process() started 3 new process and ran function "trigger"
+        p.start() #run
+
+
